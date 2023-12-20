@@ -30,6 +30,9 @@ class AlarmReceiver : BroadcastReceiver() {
             )
             notificationManager.createNotificationChannel(channel)
         }
+        val intent = Intent(context, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
 
         // Create and show the notification
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
@@ -37,6 +40,8 @@ class AlarmReceiver : BroadcastReceiver() {
             .setContentText("It's 8 AM. Have a great day!")
             .setSmallIcon(R.drawable.ic_notification)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent) // Set the pending intent
+            .setAutoCancel(true)
             .build()
 
         notificationManager.notify(NOTIFICATION_ID, notification)

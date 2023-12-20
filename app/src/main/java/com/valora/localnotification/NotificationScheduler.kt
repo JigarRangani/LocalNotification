@@ -11,8 +11,8 @@ class NotificationScheduler(private val context: Context) {
     fun scheduleDailyNotification() {
         val calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 10)
-            set(Calendar.MINUTE, 40)
+            set(Calendar.HOUR_OF_DAY, 11)
+            set(Calendar.MINUTE, 15)
             set(Calendar.SECOND, 0)
         }
 
